@@ -1,0 +1,102 @@
+# SHL Assessment Recommendation System - Project Explanation
+
+## Project Overview
+
+This project creates an intelligent recommendation system for SHL assessments, helping hiring managers identify the most suitable assessments for their specific job requirements. The system uses natural language processing, semantic search, and AI to match job descriptions or queries with relevant assessments from SHL's catalog.
+
+## System Architecture
+
+The application follows a modern web architecture with these key components:
+
+1. **Data Collection Layer**
+   - Web scraper that extracts assessment data from SHL's product catalog
+   - Collects assessment names, descriptions, URLs, and metadata (test type, duration, etc.)
+
+2. **Vector Database Layer**
+   - Transforms assessment text into vector embeddings using sentence-transformers
+   - Enables semantic search capabilities beyond simple keyword matching
+   - Stores and indexes these vectors for efficient retrieval
+
+3. **API Layer**
+   - FastAPI backend that handles requests and serves recommendations
+   - Processes different input types: direct queries, job descriptions, and uploaded files
+   - Communicates with both the vector database and Gemini AI
+
+4. **User Interface Layer**
+   - Modern HTML/CSS/JS web interface with responsive design
+   - Supports dark/light mode toggle for improved user experience
+   - Provides multiple input options for different user needs
+
+5. **AI Enhancement Layer**
+   - Integrates with Google's Gemini AI to refine and enhance recommendations
+   - Provides natural language explanations of why assessments match the query
+
+## Workflow Process
+
+1. **Initial Setup**
+   - System scrapes SHL's catalog to build a comprehensive assessment database
+   - Each assessment's description is converted to vector embeddings
+   - Vector database is created for efficient semantic searching
+
+2. **User Interaction**
+   - User enters a query, pastes a job description, or uploads a file
+   - Input is processed and sanitized for optimal searching
+
+3. **Search and Recommendation**
+   - User input is converted to the same vector space as the assessments
+   - System performs semantic search to find relevant assessments
+   - Gemini AI analyzes results to provide additional ranking and explanations
+   - Final recommendations are displayed in a user-friendly format
+
+## Assessment Ranking System
+
+The system ranks assessments on the following bases:
+
+Semantic Relevance Score:
+- Each assessment gets a similarity score (between 0-1) comparing your query with the assessment's content
+- Higher scores indicate stronger semantic similarity
+- A minimum threshold of 0.3 is applied to filter out irrelevant results
+- The system sorts results by this relevance score in descending order
+
+Gemini AI Refinement:
+- After the initial semantic search, Gemini AI analyzes both your query and the candidate assessments
+- It re-ranks assessments based on a deeper understanding of which tests best match your specific needs
+- Gemini considers factors like test type, duration, and specific capabilities in relation to your query
+- This provides more contextual intelligence beyond pure semantic matching
+
+Uniqueness:
+- The system ensures each assessment appears only once in results
+- Multiple strict deduplication steps prevent duplicate recommendations
+
+Quality Over Quantity:
+- Rather than filling all 10 slots with less relevant assessments, the system only returns truly relevant matches
+- If fewer than 10 assessments meet relevance criteria, only those meaningful matches are returned
+
+## Technology Stack
+
+- **Backend**: Python with FastAPI for efficient API handling
+- **Vector Database**: ChromaDB with sentence-transformers for semantic embeddings
+- **AI Enhancement**: Google's Gemini API for intelligent ranking and explanations
+- **Frontend**: Modern HTML5, CSS3, and JavaScript with responsive design
+- **File Processing**: Support for PDF, DOCX, and TXT file formats
+
+## Use Cases
+
+This system is particularly valuable for:
+
+1. **HR Professionals** who need to quickly identify appropriate assessments for new job openings
+2. **Hiring Managers** who want to ensure they're using the right tools to evaluate candidates
+3. **Recruitment Teams** looking to streamline their assessment selection process
+4. **HR Consultants** advising clients on assessment strategies
+
+## Future Development
+
+The system is designed with extensibility in mind, allowing for future enhancements:
+
+1. Additional filtering options based on assessment parameters
+2. User feedback incorporation to improve recommendation quality
+3. Authentication system for enterprise deployment
+4. Integration with HRIS and ATS systems
+5. Enhanced analytics on assessment usage and effectiveness
+
+This multi-layered approach ensures users receive only the most relevant assessments for their specific requirements, ranked from most suitable to least suitable, without duplicates.
