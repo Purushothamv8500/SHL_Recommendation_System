@@ -1,0 +1,339 @@
+/* Animation keyframes */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes pop {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.15);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.6;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes borderGlow {
+    0% {
+        border-color: var(--border-color);
+    }
+    50% {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 10px rgba(255, 130, 92, 0.3);
+    }
+    100% {
+        border-color: var(--border-color);
+    }
+}
+
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Animation classes */
+.animate-fadeIn {
+    animation: fadeIn 0.8s ease-in-out forwards;
+}
+
+.animate-slideDown {
+    animation: slideDown 0.8s ease-out forwards;
+}
+
+.animate-slideUp {
+    animation: slideUp 0.8s ease-out forwards;
+}
+
+.animate-scaleIn {
+    animation: scaleIn 0.7s ease-out forwards;
+}
+
+.animate-pop {
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.animate-pop:hover {
+    transform: scale(1.1);
+}
+.animate-pop:active {
+    animation: pop 0.3s ease-out;
+}
+
+.animate-pulse {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.animate-border {
+    transition: all 0.3s ease;
+}
+.animate-border:hover {
+    animation: borderGlow 2s ease-in-out infinite;
+}
+
+.animate-focus {
+    transition: all 0.3s ease;
+}
+.animate-focus:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(255, 130, 92, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Background canvas styles */
+#shader-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.3;
+}
+
+/* Special effects for elements */
+.tab-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.tab-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.tab-btn:hover::before {
+    left: 100%;
+}
+
+/* Card hover effects */
+.options-card, .results-content {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.options-card:hover, .results-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Results table row animations */
+#results-tbody tr {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#results-tbody tr.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Button shine effect */
+.btn-primary {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.btn-primary:hover::after {
+    opacity: 0.5;
+}
+
+.btn-primary:active::after {
+    opacity: 0.7;
+}
+
+/* Logo special animation */
+.logo i {
+    display: inline-block;
+    background: linear-gradient(
+        90deg,
+        var(--primary-color),
+        #ffb347,
+        var(--primary-color)
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientFlow 3s linear infinite;
+}
+
+/* Theme toggle animation */
+.theme-toggle {
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.theme-toggle:hover {
+    transform: rotate(180deg);
+}
+
+/* Input field focus animations */
+input[type="text"]:focus,
+textarea:focus {
+    animation: borderGlow 2s ease-in-out infinite;
+}
+
+/* Loading spinner enhanced */
+.spinner {
+    position: relative;
+}
+
+.spinner::before, 
+.spinner::after {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    animation: spin 1.5s linear infinite reverse;
+    opacity: 0.5;
+}
+
+.spinner::before {
+    border-top-color: var(--primary-light);
+}
+
+.spinner::after {
+    border-bottom-color: var(--primary-light);
+    animation-duration: 2s;
+}
+
+/* Staggered animation for table rows */
+@keyframes rowFadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Enhanced pulse for file upload */
+.file-upload-area i {
+    transition: all 0.3s ease;
+}
+
+.file-upload-area:hover i {
+    transform: translateY(-5px) scale(1.1);
+    text-shadow: 0 0 15px var(--primary-color);
+}
+
+/* Breathing shadow effect for cards */
+@keyframes breathe {
+    0% {
+        box-shadow: 0 4px 8px rgba(255, 130, 92, 0.1);
+    }
+    50% {
+        box-shadow: 0 8px 20px rgba(255, 130, 92, 0.2);
+    }
+    100% {
+        box-shadow: 0 4px 8px rgba(255, 130, 92, 0.1);
+    }
+}
+
+.search-container {
+    animation: breathe 4s infinite ease-in-out;
+}
+
+/* Ripple effect for buttons */
+.ripple-effect {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.6);
+    pointer-events: none;
+    animation: ripple 0.6s ease-out;
+    transform: scale(0);
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(2);
+        opacity: 0;
+    }
+} 

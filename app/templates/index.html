@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHL Assessment Recommender</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body class="dark-mode">
+    <div class="app-container">
+        <header>
+            <div class="header-content">
+                <div class="logo animate-fadeIn">
+                    <i class="fas fa-asterisk animate-pulse"></i>
+                    <h1>SHL Assessment Recommender</h1>
+                </div>
+                <div class="theme-toggle animate-fadeIn">
+                    <i class="fas fa-sun"></i>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="intro animate-slideDown">
+                <h2>How can I help you find the perfect assessment?</h2>
+                <p>Provide a job description or specific requirements, and I'll recommend the most relevant SHL assessments for your needs.</p>
+            </section>
+
+            <section class="search-container animate-scaleIn">
+                <div class="modern-search-ui">
+                    <div class="search-input-wrapper">
+                        <div class="search-input-container">
+                            <input type="text" id="search-input" placeholder="Ask anything" class="animate-focus">
+                        </div>
+                        
+                        <div class="search-buttons">
+                            <button type="button" class="search-action-btn active" data-action="query" data-type="query" id="query-btn">
+                                <i class="fas fa-search"></i>
+                                <span>Query</span>
+                            </button>
+                            <button type="button" class="search-action-btn" data-action="job-desc" data-type="job-description" id="job-desc-btn">
+                                <i class="fas fa-file-alt"></i>
+                                <span>Job Description</span>
+                            </button>
+                            <button type="button" class="search-action-btn" data-action="upload" data-type="upload" id="upload-btn">
+                                <i class="fas fa-upload"></i>
+                                <span>Upload File</span>
+                            </button>
+                            <button type="button" class="search-submit-btn" id="search-submit">
+                                <i class="fas fa-arrow-up"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- File upload area - hidden by default -->
+                    <div class="file-upload-area animate-border" id="file-upload-area" style="display:none">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Drag & drop your file here or <span class="browse-link">browse</span></p>
+                        <p class="file-types">Supported formats: TXT, PDF, DOCX</p>
+                        <input type="file" id="file-input" accept=".txt,.pdf,.docx" hidden>
+                    </div>
+                    
+                    <!-- File info display - hidden by default -->
+                    <div class="file-info" id="file-info" style="display: none;">
+                        <div class="file-preview">
+                            <i class="fas fa-file-alt"></i>
+                            <span id="file-name">filename.pdf</span>
+                        </div>
+                        <button type="button" id="remove-file" class="btn-secondary">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="results-container" id="results-section" style="display: none;">
+                <div class="loading-spinner" id="loading-spinner">
+                    <div class="spinner"></div>
+                    <p>Finding the best assessments...</p>
+                </div>
+
+                <div class="results-content animate-fadeIn" id="results-content">
+                    <h2>Recommended Assessments</h2>
+                    
+                    <div class="gemini-explanation animate-fadeIn" id="gemini-explanation">
+                        <div class="gemini-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="explanation-text" id="explanation-text">
+                            <!-- Gemini's explanation will be inserted here -->
+                        </div>
+                    </div>
+
+                    <div class="results-table-container">
+                        <table class="results-table" id="results-table">
+                            <thead>
+                                <tr>
+                                    <th>Assessment Name</th>
+                                    <th>Gemini's Summary</th>
+                                    <th>Test Type</th>
+                                    <th>Duration</th>
+                                    <th>Remote Testing</th>
+                                    <th>Adaptive/IRT</th>
+                                    <th>Details</th>
+                                </tr>
+                            </thead>
+                            <tbody id="results-tbody">
+                                <!-- Results will be inserted here -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="no-results" id="no-results" style="display: none;">
+                        <i class="fas fa-search animate-pulse"></i>
+                        <p>No relevant assessments found based on your query.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+    </div>
+
+    <script src="/static/js/script.js"></script>
+</body>
+</html> 
